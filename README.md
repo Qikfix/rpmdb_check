@@ -1,0 +1,1 @@
+# rpmdb_check
