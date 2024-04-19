@@ -25,7 +25,7 @@ Total # of entries on RPMdb: 1205
 # RPMdb Duplicate entries using package-cleanup
 ---
 Updating Subscription Management repositories.
-Last metadata expiration check: 2:53:00 ago on Thu 18 Apr 2024 09:28:09 PM UTC.
+Last metadata expiration check: 3:26:18 ago on Thu 18 Apr 2024 09:28:09 PM UTC.
 ---
 
 # Processes on RPMdb files
@@ -35,7 +35,19 @@ Last metadata expiration check: 2:53:00 ago on Thu 18 Apr 2024 09:28:09 PM UTC.
 # Checking the dependencies problems on RPMdb
 ---
 Updating Subscription Management repositories.
-Last metadata expiration check: 2:53:16 ago on Thu 18 Apr 2024 09:28:09 PM UTC.
+Last metadata expiration check: 3:26:35 ago on Thu 18 Apr 2024 09:28:09 PM UTC.
+---
+
+# Checking the yum history and basesystem rpm package
+---
+Transaction ID : 1
+Begin time     : Fri 09 Jun 2023 12:19:11 AM UTC
+Releasever     : 8.6
+
+basesystem-11-5.el8.noarch                    Fri 09 Jun 2023 12:19:28 AM UTC
+
+
+They match: Fri 09 Jun 2023 12
 ---
 ```
 
