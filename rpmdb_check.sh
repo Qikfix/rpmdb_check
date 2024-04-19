@@ -83,6 +83,26 @@ check_dependencies_problems()
   echo "---"
 }
 
+check_basesystem_yumhistory()
+{
+  # Checking the yum history and basesystem
+  echo -e "\n# Checking the yum history and basesystem rpm package"
+  echo "---"
+  yum history info 1 | grep -E '(^Transaction ID|^Begin time|^Releasever)'
+  echo
+  rpm -q --last basesystem
+  echo
+  echo
+  date_from_yum_history=$(yum history info 1 | grep -E '(^Begin time)' | cut -d: -f2 | sed 's/^ //g')
+  date_from_rpm=$(rpm -q --last basesystem | awk '{print $2, $3, $4, $5, $6}' | cut -d: -f1)
+  if [ "$date_from_yum_history" == "$date_from_rpm" ]; then
+    echo "They match: $date_from_rpm"
+  else
+    echo "Something is weird, basesystem and first installation are not matching"
+  fi
+  echo "---"
+}
+
 # Main section here
 check_requirements
 check_corrupt_rpmdb
@@ -91,3 +111,4 @@ check_duplicate_entries
 check_duplicate_entries_package_cleanup
 lsof_rpmdb_files
 check_dependencies_problems
+check_basesystem_yumhistory
