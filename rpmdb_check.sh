@@ -48,6 +48,11 @@ count_rpmdb_entries()
   echo "el9 packages ..: $(grep el9 /tmp/full_list.log | wc -l)"
   echo ""
   echo "Packages with no version ..: $(grep -v -E '(el6|el7|el8|el9)' /tmp/full_list.log | wc -l)"
+  if [ $count -le 300 ]; then
+    echo
+    echo
+    echo "Something is suspicious here, db with 300 or less entries"
+  fi
   echo "---"
 }
 
