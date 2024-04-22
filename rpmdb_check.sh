@@ -139,12 +139,12 @@ check_packages_around()
 
 
 # Main section here
-# check_requirements
-# check_corrupt_rpmdb
+check_requirements
+check_corrupt_rpmdb
 count_rpmdb_entries
-# check_duplicate_entries
-# check_duplicate_entries_package_cleanup
-# lsof_rpmdb_files
-# check_dependencies_problems
-# check_basesystem_yumhistory
-# check_packages_around
+check_duplicate_entries
+check_duplicate_entries_package_cleanup
+lsof_rpmdb_files
+check_dependencies_problems
+check_basesystem_yumhistory
+check_packages_around
