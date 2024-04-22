@@ -110,7 +110,7 @@ check_basesystem_yumhistory()
   echo "---"
 }
 
-check_required_files_around()
+check_packages_around()
 {
   PACKAGES_FILE="/var/lib/rpm/Packages"
   # Checking the Packages file
@@ -142,4 +142,4 @@ check_duplicate_entries_package_cleanup
 lsof_rpmdb_files
 check_dependencies_problems
 check_basesystem_yumhistory
-check_required_files_around
+check_packages_around
