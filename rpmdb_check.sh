@@ -134,12 +134,12 @@ check_required_files_around()
 
 
 # Main section here
-# check_requirements
-# check_corrupt_rpmdb
-# count_rpmdb_entries
-# check_duplicate_entries
-# check_duplicate_entries_package_cleanup
-# lsof_rpmdb_files
-# check_dependencies_problems
-# check_basesystem_yumhistory
+check_requirements
+check_corrupt_rpmdb
+count_rpmdb_entries
+check_duplicate_entries
+check_duplicate_entries_package_cleanup
+lsof_rpmdb_files
+check_dependencies_problems
+check_basesystem_yumhistory
 check_required_files_around
