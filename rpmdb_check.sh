@@ -48,6 +48,11 @@ count_rpmdb_entries()
   echo "el9 packages ..: $(grep el9 /tmp/full_list.log | wc -l)"
   echo ""
   echo "Packages with no version ..: $(grep -v -E '(el6|el7|el8|el9)' /tmp/full_list.log | wc -l)"
+  if [ $count -le 300 ]; then
+    echo
+    echo
+    echo "Something is suspicious here, db with 300 or less entries"
+  fi
   echo "---"
 }
 
@@ -134,12 +139,12 @@ check_packages_around()
 
 
 # Main section here
-check_requirements
-check_corrupt_rpmdb
+# check_requirements
+# check_corrupt_rpmdb
 count_rpmdb_entries
-check_duplicate_entries
-check_duplicate_entries_package_cleanup
-lsof_rpmdb_files
-check_dependencies_problems
-check_basesystem_yumhistory
-check_packages_around
+# check_duplicate_entries
+# check_duplicate_entries_package_cleanup
+# lsof_rpmdb_files
+# check_dependencies_problems
+# check_basesystem_yumhistory
+# check_packages_around
