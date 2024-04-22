@@ -39,8 +39,15 @@ count_rpmdb_entries()
   # improve this func to match some additional info
   echo -e "\n# RPMdb Entries"
   echo "---"
-  count=$(rpm -qa | wc -l)
+  rpm -qa &>/tmp/full_list.log
+  count=$(cat /tmp/full_list.log | wc -l)
   echo "Total # of entries on RPMdb: $count"
+  echo "el6 packages ..: $(grep el6 /tmp/full_list.log | wc -l)"
+  echo "el7 packages ..: $(grep el7 /tmp/full_list.log | wc -l)"
+  echo "el8 packages ..: $(grep el8 /tmp/full_list.log | wc -l)"
+  echo "el9 packages ..: $(grep el9 /tmp/full_list.log | wc -l)"
+  echo ""
+  echo "Packages with no version ..: $(grep -v -E '(el6|el7|el8|el9)' /tmp/full_list.log | wc -l)"
   echo "---"
 }
 

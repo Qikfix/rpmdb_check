@@ -15,7 +15,13 @@ The RPMdb is NOT corrupt
 
 # RPMdb Entries
 ---
-Total # of entries on RPMdb: 1205
+Total # of entries on RPMdb: 1212
+el6 packages ..: 0
+el7 packages ..: 0
+el8 packages ..: 1210
+el9 packages ..: 0
+
+Packages with no version ..: 2
 ---
 
 # RPMdb Duplicate entries (this can take some time ...)
