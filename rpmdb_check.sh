@@ -110,6 +110,29 @@ check_basesystem_yumhistory()
   echo "---"
 }
 
+check_packages_around()
+{
+  PACKAGES_FILE="/var/lib/rpm/Packages"
+  # Checking the Packages file
+  echo -e "\n# Checking the Packages file"
+  echo "---"
+  if [ -f $PACKAGES_FILE ]; then
+    ls -l $PACKAGES_FILE
+    echo
+    du  -ks $PACKAGES_FILE
+    echo
+    du -hs $PACKAGES_FILE
+    echo
+    file $PACKAGES_FILE
+    echo
+    stat $PACKAGES_FILE
+  else
+    echo "No '$PACKAGES_FILE' around"
+  fi
+  echo "---"
+}
+
+
 # Main section here
 check_requirements
 check_corrupt_rpmdb
@@ -119,3 +142,4 @@ check_duplicate_entries_package_cleanup
 lsof_rpmdb_files
 check_dependencies_problems
 check_basesystem_yumhistory
+check_packages_around
