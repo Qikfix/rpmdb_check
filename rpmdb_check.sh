@@ -210,6 +210,7 @@ elif [ "$1" == "--local" ]; then
   PACKAGE_CLEANUP_CMD="package-cleanup"
   LSOF_CHECK=True
   PACKAGES_FILE="/var/lib/rpm/Packages"
+  
   # Calling the main function
   main_func
 
