@@ -191,6 +191,7 @@ main_func()
 }
 
 
+# Initial parameters checks
 if [ "$1" == "" ]; then
   echo "# Missing parameters"
   echo ""
@@ -203,13 +204,13 @@ if [ "$1" == "" ]; then
   echo "$0 --data <path_to_the_rpmdb>"
   echo
 elif [ "$1" == "--local" ]; then
-
+  # Setting the global variables
   YUM_CMD="yum"
   RPM_CMD="rpm"
   PACKAGE_CLEANUP_CMD="package-cleanup"
   LSOF_CHECK=True
   PACKAGES_FILE="/var/lib/rpm/Packages"
-
+  # Calling the main function
   main_func
 
 elif [ "$1" == "--data" ] && [ "$2" == "" ]; then
@@ -224,15 +225,15 @@ elif [ "$1" == "--data" ] && [ "$2" != "" ]; then
   if [ ! -d "${local_dir}/var/lib/rpm" ]; then
     echo "The directory '$local_dir/var/lib/rpm' doesn't exist, exiting ..."
   else
-
+    # Setting the global variables
     YUM_CMD="yum --installroot=$local_dir"
     RPM_CMD="rpm --root=$local_dir"
     PACKAGE_CLEANUP_CMD="package-cleanup --installroot=$local_dir"
     LSOF_CHECK=False
     PACKAGES_FILE="$local_dir/var/lib/rpm/Packages"
 
+    # Calling the main function
     main_func
-
   fi
 else
   echo "Invalid option"
