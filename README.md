@@ -6,8 +6,17 @@ This script will do some queries, just to check the integrity of RPMdb.
 
 Note that you can run this script in a local server, or run it against a 3rd party `rpmdb`
 
+To Deploy
 ```
-# ./rpmdb_check.sh 
+wget https://raw.githubusercontent.com/Qikfix/rpmdb_check/main/rpmdb_check.sh
+chmod +x rpmdb_check.sh
+```
+And that's it! :-)
+
+
+Now, let' s take a look on how this works.
+```
+./rpmdb_check.sh 
 # Missing parameters
 
 Please, call the script passing the parameter as presented below
@@ -23,7 +32,7 @@ Note: In the `path_to_the_rpmdb`, you need to keep the structure, for example `/
 
 Here you can see an example consuming the local `rpmdb`
 ```
-# ./rpmdb_check.sh --local
+./rpmdb_check.sh --local
 
 # Corrupt RPMdb
 
@@ -122,7 +131,7 @@ Change: 2024-04-29 08:50:09.832938624 +0000
 
 And here, consuming a 3rd party `rpmdb`
 ```
-#  ./rpmdb_check.sh --data /test
+./rpmdb_check.sh --data /test
 
 # Corrupt RPMdb
 
