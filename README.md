@@ -6,15 +6,18 @@ This script will do some queries, just to check the integrity of RPMdb.
 
 Note that you can run this script in a local server, or run it against a 3rd party `rpmdb`
 
-To Deploy
+---
+
+## To Deploy
 ```
 wget https://raw.githubusercontent.com/Qikfix/rpmdb_check/main/rpmdb_check.sh
 chmod +x rpmdb_check.sh
 ```
 And that's it! :-)
 
+---
 
-Now, let' s take a look on how this works.
+## Now, let' s take a look on how this works.
 ```
 ./rpmdb_check.sh 
 # Missing parameters
@@ -29,8 +32,28 @@ or
 ```
 Note: In the `path_to_the_rpmdb`, you need to keep the structure, for example `/var/lib/rpm/`, so, assuming that you are using your `/tmp`, you can pass the path `/tmp`, but the tree should be something like `/tmp/var/lib/rpm/*`.
 
+---
 
-Here you can see an example consuming the local `rpmdb`
+## Yet on the 3rd party rpmdb, how to request it? Pretty simple
+
+For rhel6/7
+```
+tar cvf /tmp/$(hostname)-$(date +"%Y-%m-%d-%H-%M-%S")-rpmdb.tar.bz2 /var/lib/{yum,rpm}
+```
+
+For rhel8+
+```
+tar cjhf /tmp/$(hostname)-$(date +"%Y-%m-%d-%H-%M-%S")-rpmdb.tar.bz2 /var/lib/{dnf,rpm} /etc/dnf/modules.d /etc/os-release
+```
+
+And to extract, assuming that we will be using the `/test` folder, you could use something like
+```
+tar xvf filename-rpmdb.tar.bz2 -C /test
+```
+
+---
+
+## Here you can see an example consuming the local `rpmdb`
 ```
 ./rpmdb_check.sh --local
 
@@ -129,7 +152,7 @@ Change: 2024-04-29 08:50:09.832938624 +0000
 ---
 ```
 
-And here, consuming a 3rd party `rpmdb`
+## And here, consuming a 3rd party `rpmdb`
 ```
 ./rpmdb_check.sh --data /test
 
@@ -235,6 +258,7 @@ Change: 2024-04-29 08:56:35.300401057 +0000
  Birth: 2024-04-29 08:56:35.211398641 +0000
 ---
 ```
+---
 
 Please, check the [Issues page](https://github.com/Qikfix/rpmdb_check/issues) for the features that will be around soon, if your request is not there, please, feel free to create a [new issue](https://github.com/Qikfix/rpmdb_check/issues/new).
 
