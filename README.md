@@ -48,7 +48,7 @@ tar cjhf /tmp/$(hostname)-$(date +"%Y-%m-%d-%H-%M-%S")-rpmdb.tar.bz2 /var/lib/{d
 
 And to extract, assuming that we will be using the `/test` folder, you could use something like
 ```
-tar xvf filename-rpmdb.tar.bz2 -C /test
+tar xvf `filename-rpmdb`.tar.bz2 -C /test
 ```
 
 ---
