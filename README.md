@@ -79,7 +79,7 @@ el7 packages ..: 0
 el8 packages ..: 1211
 el9 packages ..: 0
 
-Packages with no version ..: 2
+Packages with no release ..: 2
 ---
 
 # RPMdb Duplicate entries (this can take some time ...)
@@ -178,7 +178,7 @@ el7 packages ..: 0
 el8 packages ..: 435
 el9 packages ..: 0
 
-Packages with no version ..: 2
+Packages with no release ..: 2
 ---
 
 # RPMdb Duplicate entries (this can take some time ...)
