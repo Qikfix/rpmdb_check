@@ -114,6 +114,8 @@ Last metadata expiration check: 0:35:36 ago on Mon 29 Apr 2024 09:43:57 AM UTC.
 
     # yum history info 1 | grep -E '(^Transaction ID|^Begin time|^Releasever)'
     # rpm -q --last basesystem
+    # yum history info 1 | grep -E '(^Begin time)' | cut -d: -f2 | sed 's/^ //g' | awk '{print $1, $2, $3, $4}'
+    # rpm -q --last basesystem | awk '{print $2, $3, $4, $5, $6}' | cut -d: -f1 | awk '{print $1, $2, $3, $4}'
 ---
 Transaction ID : 1
 Begin time     : Fri 09 Jun 2023 12:19:11 AM UTC
@@ -218,18 +220,19 @@ Last metadata expiration check: 0:35:23 ago on Mon 29 Apr 2024 09:46:22 AM UTC.
 
 # Checking the yum history and basesystem rpm package
 
-    # yum --installroot=/test history info 1 | grep -E '(^Transaction ID|^Begin time|^Releasever)'
-    # rpm --root=/test -q --last basesystem
+    # yum --installroot=/test/ history info 1 | grep -E '(^Transaction ID|^Begin time|^Releasever)'
+    # rpm --root=/test/ -q --last basesystem
+    # yum --installroot=/test/ history info 1 | grep -E '(^Begin time)' | cut -d: -f2 | sed 's/^ //g' | awk '{print $1, $2, $3, $4}'
+    # rpm --root=/test/ -q --last basesystem | awk '{print $2, $3, $4, $5, $6}' | cut -d: -f1 | awk '{print $1, $2, $3, $4}'
 ---
-No transactions
-Error: Failed history info
+Transaction ID : 1
+Begin time     : Fri 09 Jun 2023 12:19:11 AM UTC
+Releasever     : 8.6
 
-basesystem-11-5.el8.noarch                    Tue 24 Oct 2023 04:37:57 PM UTC
+basesystem-11-5.el8.noarch                    Fri 09 Jun 2023 12:19:28 AM UTC
 
 
-No transactions
-Error: Failed history info
-Something is weird, basesystem and first installation are not matching
+They match: Fri 09 Jun 2023
 ---
 
 # Checking the Packages file
