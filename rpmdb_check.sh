@@ -129,6 +129,8 @@ check_basesystem_yumhistory()
   echo
   echo "    # $YUM_CMD history info 1 | grep -E '(^Transaction ID|^Begin time|^Releasever)'"
   echo "    # $RPM_CMD -q --last basesystem"
+  echo "    # $YUM_CMD history info 1 | grep -E '(^Begin time)' | cut -d: -f2 | sed 's/^ //g' | awk '{print \$1, \$2, \$3, \$4}'"
+  echo "    # $RPM_CMD -q --last basesystem | awk '{print \$2, \$3, \$4, \$5, \$6}' | cut -d: -f1 | awk '{print \$1, \$2, \$3, \$4}'"
   echo "---"
   # yum history info 1 | grep -E '(^Transaction ID|^Begin time|^Releasever)'
   $YUM_CMD history info 1 | grep -E '(^Transaction ID|^Begin time|^Releasever)'
@@ -139,8 +141,8 @@ check_basesystem_yumhistory()
   echo
   # date_from_yum_history=$(yum history info 1 | grep -E '(^Begin time)' | cut -d: -f2 | sed 's/^ //g')
   # date_from_rpm=$(rpm -q --last basesystem | awk '{print $2, $3, $4, $5, $6}' | cut -d: -f1)
-  date_from_yum_history=$($YUM_CMD history info 1 | grep -E '(^Begin time)' | cut -d: -f2 | sed 's/^ //g')
-  date_from_rpm=$($RPM_CMD -q --last basesystem | awk '{print $2, $3, $4, $5, $6}' | cut -d: -f1)
+  date_from_yum_history=$($YUM_CMD history info 1 | grep -E '(^Begin time)' | cut -d: -f2 | sed 's/^ //g' | awk '{print $1, $2, $3, $4}')
+  date_from_rpm=$($RPM_CMD -q --last basesystem | awk '{print $2, $3, $4, $5, $6}' | cut -d: -f1 | awk '{print $1, $2, $3, $4}')
   if [ "$date_from_yum_history" == "$date_from_rpm" ]; then
     echo "They match: $date_from_rpm"
   else
