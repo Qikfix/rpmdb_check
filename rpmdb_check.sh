@@ -23,7 +23,7 @@ check_requirements()
 check_corrupt_rpmdb()
 {
   # Checking if the rpmdb is corrupt
-  echo -e "\n# Corrupt RPMdb"
+  echo -e "\n## Corrupt RPMdb"
   echo
   echo "    # $RPM_CMD -qa &>/dev/null"
   echo "---"
@@ -41,7 +41,7 @@ count_rpmdb_entries()
 {
   # Checking the number of entries on the rpmdb. We can for sure
   # improve this func to match some additional info
-  echo -e "\n# RPMdb Entries"
+  echo -e "\n## RPMdb Entries"
   echo
   echo "   # $RPM_CMD -qa &>/tmp/full_list.log"
   echo "   # grep el6 /tmp/full_list.log | wc -l"
@@ -72,7 +72,7 @@ check_duplicate_entries()
 {
   # Checking for some duplicate entries on rpmdb
   # https://access.redhat.com/solutions/3924551
-  echo -e "\n# RPMdb Duplicate entries (this can take some time ...)"
+  echo -e "\n## RPMdb Duplicate entries (this can take some time ...)"
   echo
   echo -e "   # $YUM_CMD check &> /tmp/yumcheck"
   echo -e "   # grep \"duplicate\" /tmp/yumcheck | awk '{ print \$NF }' | egrep -v \"\:\""
@@ -88,12 +88,12 @@ check_duplicate_entries()
 check_duplicate_entries_package_cleanup()
 {
   # Checking for some duplicate entries on rpmdb
-  echo -e "\n# RPMdb Duplicate entries using package-cleanup"
+  echo -e "\n## RPMdb Duplicate entries using package-cleanup"
   echo
-  echo "    # $PACKAGE_CLEANUP_CMD --dupes"
+  echo "    # $PACKAGE_CLEANUP_CMD --dupes --disablerepo=\*"
   echo "---"
   # package-cleanup --dupes
-  $PACKAGE_CLEANUP_CMD --dupes
+  $PACKAGE_CLEANUP_CMD --dupes --disablerepo=\*
   echo "---"
 }
 
@@ -101,12 +101,12 @@ lsof_rpmdb_files()
 {
   if [ "$LSOF_CHECK" == "True" ]; then
     # Checking the processes on the /var/lib/rpm/*
-    echo -e "\n# Processes on RPMdb files"
+    echo -e "\n## Processes on RPMdb files"
     echo "---"
     lsof /var/lib/rpm/*
     echo "---"
   else
-    echo -e "\n# Processes on RPMdb files"
+    echo -e "\n## Processes on RPMdb files"
     echo "    ## Nothing to do! Checking in non local rpmdb"
   fi
 }
@@ -114,18 +114,18 @@ lsof_rpmdb_files()
 check_dependencies_problems()
 {
   # Checking the dependencies problems
-  echo -e "\n# Checking the dependencies problems on RPMdb"
+  echo -e "\n## Checking the dependencies problems on RPMdb"
   echo
-  echo "    # $PACKAGE_CLEANUP_CMD --problems"
+  echo "    # $PACKAGE_CLEANUP_CMD --problems --disablerepo=\*"
   echo "---"
-  $PACKAGE_CLEANUP_CMD --problems
+  $PACKAGE_CLEANUP_CMD --problems --disablerepo=\*
   echo "---"
 }
 
 check_basesystem_yumhistory()
 {
   # Checking the yum history and basesystem
-  echo -e "\n# Checking the yum history and basesystem rpm package"
+  echo -e "\n## Checking the yum history and basesystem rpm package"
   echo
   echo "    # $YUM_CMD history info 1 | grep -E '(^Transaction ID|^Begin time|^Releasever)'"
   echo "    # $RPM_CMD -q --last basesystem"
@@ -155,7 +155,7 @@ check_packages_around()
 {
   # PACKAGES_FILE="/var/lib/rpm/Packages"
   # Checking the Packages file
-  echo -e "\n# Checking the Packages file"
+  echo -e "\n## Checking the Packages file"
   echo
   echo "    # ls -l $PACKAGES_FILE"
   echo "    # du -ks $PACKAGES_FILE"
